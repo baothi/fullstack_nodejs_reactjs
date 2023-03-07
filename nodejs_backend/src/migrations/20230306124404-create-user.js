@@ -12,6 +12,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       password: {
         type: Sequelize.STRING
       },
@@ -27,10 +30,13 @@ module.exports = {
       gender: {
         type: Sequelize.BOOLEAN
       },
-      TypeRole: {
+      roleId: {
         type: Sequelize.STRING
       },
-      KeyRole: {
+      phonenumber: {
+        type: Sequelize.STRING
+      },
+      positionId: {
         type: Sequelize.STRING
       },
       createdAt: {

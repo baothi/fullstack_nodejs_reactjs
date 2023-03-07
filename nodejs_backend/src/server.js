@@ -59,3 +59,5 @@ app.listen(port, () => {
 // npx sequelize-cli model:generate --name clinic --attributes address:integer,description:text,image:string
 
 // https://www.youtube.com/watch?v=_YEKpvabzCQ&list=PLncHg6Kn2JT6E38Z3kit9Hnif1xC_9VqI&index=40
+
+// npm install --save bcrypt@5.1.0 bcryptjs@2.4.3
