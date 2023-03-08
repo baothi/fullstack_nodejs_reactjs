@@ -1,2 +1,4 @@
 /nodejs_backend/node_modules
 /nodejs_backend/.env
+/reactjs_frontend/node_modules
+/reactjs_frontend/.env
