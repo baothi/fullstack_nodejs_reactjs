@@ -3,10 +3,18 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss'
 import logo from '../../assets/logo.svg';
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES } from '../../utils';
+
+import { changeLanguageApp } from "../../store/actions";
 
 class HomeHeader extends Component {
 
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language)
+  }
+
   render() {
+    let language = this.props.language;
 
     return (
       <React.Fragment>
@@ -36,8 +44,8 @@ class HomeHeader extends Component {
             </div>
             <div className='right-content'>
               <div className="support"><i className="far fa-question-circle"></i><FormattedMessage id="home-header.support" /></div>
-              <div className='language-en active'>EN</div>
-              <div className='language-vi'>VN</div>
+              <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+              <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
             </div>
           </div>
         </div>
@@ -47,7 +55,7 @@ class HomeHeader extends Component {
             <div className='title2'><FormattedMessage id="banner.comprehensive-health-care" /></div>
             <div className='search'>
               <i className="fas fa-search"></i>
-              <input type="search" placeholder='Tìm gói khám' />
+              <input type="search" placeholder='Tìm chuyên khoa khám bệnh' />
             </div>
           </div>
           <div className="content-down">
@@ -88,12 +96,13 @@ class HomeHeader extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    lang: state.user.language,
+    language: state.app.language,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
   };
 };
 

@@ -18,7 +18,8 @@
         "general-examination": "General examination",
         "medical-test": "Medical test",
         "mental-health": "Mental health",
-        "dental-examination": "Dental examination"
+        "dental-examination": "Dental examination",
+        "find-a-medical-specialist": "Find a medical specialist"
     },
     "common": {
         "add": "Add",
