@@ -17,7 +17,7 @@ import timmachImg from "../../../assets/specialty/tim-mach.jpg";
 import yhoccotruyenImg from "../../../assets/specialty/y-hoc-co-truyen.jpg";
 
 
-class Specialty extends Component {
+class HandBook extends Component {
 
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language)
@@ -27,56 +27,56 @@ class Specialty extends Component {
   render() {
 
     return (
-      <div className="section-share section-specialty">
+      <div className="section-share section-handbook">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Chuyên Khoa Phổ Biến</span>
+            <span className="title-section">Cẩm Nang</span>
             <button className="btn-section">Xem Thêm</button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Cơ Xương Khớp</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Thần Kinh</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Châm Cứu</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Cột Sống</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Da Liễu</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Siêu Âm</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Tai Mũi Họng</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Sản Phụ Khoa</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Tiêu Hóa</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Tim Mạch</div>
               </div>
               <div className="section-customize">
-                <div className="bg-image section-specialty" />
+                <div className="bg-image section-handbook" />
                 <div>Y Học Cổ Truyền</div>
               </div>
             </Slider>
@@ -101,4 +101,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(HandBook);
