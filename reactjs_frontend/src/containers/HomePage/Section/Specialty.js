@@ -4,19 +4,6 @@ import './Specialty.scss'
 import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
 
-import coxuongkhopImg from "../../../assets/specialty/co-xuong-khop.jpg";
-import thankinhImg from "../../../assets/specialty/than-kinh.jpg";
-import chamcuuImg from "../../../assets/specialty/cham-cuu.jpg";
-import cotsongImg from "../../../assets/specialty/cot-song.jpg";
-import dalieuImg from "../../../assets/specialty/da-lieu.jpg";
-import sanphukhoaImg from "../../../assets/specialty/san-phu-khoa.jpg";
-import sieuamImg from "../../../assets/specialty/san-phu-khoa.jpg";
-import taimuihongImg from "../../../assets/specialty/tai-mui-hong.jpg";
-import tieuhoaImg from "../../../assets/specialty/tieu-hoa.jpg";
-import timmachImg from "../../../assets/specialty/tim-mach.jpg";
-import yhoccotruyenImg from "../../../assets/specialty/y-hoc-co-truyen.jpg";
-
-
 class Specialty extends Component {
 
   changeLanguage = (language) => {
