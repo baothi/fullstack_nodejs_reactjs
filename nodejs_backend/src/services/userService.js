@@ -203,10 +203,37 @@ let updateUserData = async (data) => {
   });
 }
 
+let getAllCodeServices = async (typeInput) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!typeInput) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter"
+        });
+      } else {
+        let res = {};
+        let allcode = await db.allcode.findAll({
+          where: { type: typeInput }
+        });
+        res.errCode = 0;
+        res.data = allcode;
+        resolve(res);
+      }
+
+    } catch (e) {
+      reject(e);
+    }
+
+  })
+};
+
+
 module.exports = {
   handleUserLogin: handleUserLogin,
   getAllUsers: getAllUsers,
   createNewUser: createNewUser,
   deleteUser: deleteUser,
-  updateUserData: updateUserData
+  updateUserData: updateUserData,
+  getAllCodeServices: getAllCodeServices
 }
