@@ -13,14 +13,14 @@ module.exports = {
      * }], {});
     */
     return queryInterface.bulkInsert('Users', [{
-      email: 'admin@gmail.com',
-      password: 'password',
-      firstName: 'John',
-      lastName: 'Doe',
-      address: 'USA',
-      gender: 1,
-      typeRole: 'ROLE',
-      keyRole: 'R1',
+      email: 'baothi@gmail.com',
+      password: '$2a$10$Q7LNyTfSDGCBFl3DgjiVpes80a5hRdRGVCBf8zCc2GLIliM8mXT4u', // 123456789
+      firstName: 'bao',
+      lastName: 'thi',
+      address: 'bienhoa dong nai',
+      gender: 'M',
+      roleId: 'R1',
+      positionId: 'P1',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
