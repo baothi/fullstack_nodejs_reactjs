@@ -61,6 +61,7 @@
         "position": "Chức Danh",
         "roleid": "Vai Trò",
         "image": "Hình Ảnh Đại Diện",
-        "save": "Lưu User"
+        "save": "Lưu User",
+        "edit": "Sửa User"
     }
 }
