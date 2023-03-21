@@ -30,8 +30,8 @@ app.use(function (req, res, next) {
 });
 // config app
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 viewEngine(app)
 initWebRoutes(app)
@@ -82,3 +82,7 @@ app.listen(port, () => {
 // npm install --save bcrypt@5.1.0 bcryptjs@2.4.3
 // update migrate --
 // npx sequelize-cli db:migrate --to 20230306124404-create-user.js
+
+// https://www.codementor.io/@anayooleru274/modifying-an-existing-sequelize-migration-1yp92kp7yb
+// https://dev.to/nedsoft/add-new-fields-to-existing-sequelize-migration-3527
+// https://dev.to/adefam/create-update-add-and-delete-sequelize-migration-eoa
