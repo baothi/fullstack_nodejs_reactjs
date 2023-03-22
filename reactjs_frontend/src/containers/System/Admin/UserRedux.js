@@ -189,6 +189,8 @@ class UserRedux extends Component {
             // imageBase64 = `data:image/png;base64,${imageBuffer.toString('base64')}`
             imageBase64 = new Buffer(user.image, 'base64').toString('binary')
         }
+        // console.log("handleEditUserFromParent : ", imageBase64);
+        // console.log("handleEditUserFromParent : ", user);
         this.setState({
             email: user.email,
             password: 'HARDCODE',

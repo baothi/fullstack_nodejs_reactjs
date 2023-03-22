@@ -136,7 +136,7 @@ module.exports = {
       {
         type: 'POSITION',
         keyMap: 'P0',
-        valueEn: 'None',
+        valueEn: 'Doctor',
         valueVi: 'Bác sĩ',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -151,7 +151,7 @@ module.exports = {
       {
         type: 'POSITION',
         keyMap: 'P2',
-        valueEn: 'Doctor',
+        valueEn: 'Ph.D.',
         valueVi: 'Tiến sĩ',
         createdAt: new Date(),
         updatedAt: new Date()

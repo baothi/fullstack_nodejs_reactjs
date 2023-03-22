@@ -18,6 +18,7 @@ module.exports = {
       firstName: 'bao',
       lastName: 'thi',
       address: 'bienhoa dong nai',
+      phonenumber: '0906583131',
       gender: 'M',
       roleId: 'R1',
       positionId: 'P1',
