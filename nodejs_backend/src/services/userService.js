@@ -109,6 +109,7 @@ let createNewUser = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       // check email is exist ????
+      // console.log(data);
       let check = await checkUserEmail(data.email);
       if (check === true) {
         resolve({
