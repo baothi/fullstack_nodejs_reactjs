@@ -31,11 +31,10 @@ const getTopDoctorHomeService = (limit) => {
 }
 
 const getAllDoctors = () => {
-  return axios.get(`/api/get-all-doctors`)
+  return axios.get('/api/get-all-doctors')
 }
 
 const createInforDoctor = (data) => {
-  console.log("user service created inforDoctor : ", data)
   return axios.post('/api/create-infor-doctor', data)
 }
 

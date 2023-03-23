@@ -215,6 +215,7 @@ export const fetchTopDoctor = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getTopDoctorHomeService('');
+      // console.log("fetchTopDoctor : ", res)
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
@@ -248,6 +249,7 @@ export const fetchALLDoctors = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllDoctors();
+      console.log("fetchALLDoctors in admin action", res);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,

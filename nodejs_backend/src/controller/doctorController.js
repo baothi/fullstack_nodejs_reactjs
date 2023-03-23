@@ -19,6 +19,7 @@ let getTopDoctorHome = async (req, res) => {
 let getAllDoctors = async (req, res) => {
   try {
     let doctors = await doctorService.getAllDoctors();
+    console.log('get all docs : ', doctors);
     return res.status(200).json(doctors);
   } catch (e) {
     console.log(e);
