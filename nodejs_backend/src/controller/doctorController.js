@@ -37,8 +37,20 @@ let createInforDoctor = async (req, res) => {
   }
 };
 
+let getDetailDoctorById = async (req, res) => {
+  try {
+    console.log('get : ', req.query.id);
+    let infor = await doctorService.getDetailDoctorById(req.query.id);
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({ errCode: -1, message: "get Detail Doctor By Id Error from server" });
+  }
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
   createInforDoctor: createInforDoctor,
+  getDetailDoctorById: getDetailDoctorById
 }

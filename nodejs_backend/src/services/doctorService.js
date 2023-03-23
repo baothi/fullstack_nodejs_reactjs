@@ -73,8 +73,41 @@ let createInforDoctor = (inputData) => {
   })
 };
 
+let getDetailDoctorById = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parmeter!"
+        })
+      } else {
+        let data = await db.User.findOne({
+          where: { id: id },
+          attributes: {
+            exclude: ['password', 'image']
+          },
+          include: [
+            { model: db.markdown, attributes: ['contentHTML', 'contentMarkdown', 'description'] },
+            { model: db.allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] },
+          ],
+          raw: true,
+          nest: true
+        })
+        resolve({
+          errCode: 0,
+          data: data
+        })
+      }
+    } catch (e) {
+      reject(e);
+    }
+  })
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
-  createInforDoctor: createInforDoctor
+  createInforDoctor: createInforDoctor,
+  getDetailDoctorById: getDetailDoctorById
 }
