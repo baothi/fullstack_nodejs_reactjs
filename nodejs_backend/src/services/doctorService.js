@@ -49,24 +49,42 @@ let getAllDoctors = () => {
 let createInforDoctor = (inputData) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkdown) {
+      if (!inputData.doctorId || !inputData.contentHTML || !inputData.contentMarkdown || !inputData.action) {
         resolve({
           errCode: 1,
           errMessage: "Missing parameter"
         })
       } else {
-
-        await db.markdown.create({
-          contentHTML: inputData.contentHTML,
-          contentMarkdown: inputData.contentMarkdown,
-          description: inputData.description,
-          doctorId: inputData.doctorId
-        })
+        if (inputData.action === 'CREATE') {
+          await db.markdown.create({
+            contentHTML: inputData.contentHTML,
+            contentMarkdown: inputData.contentMarkdown,
+            description: inputData.description,
+            doctorId: inputData.doctorId
+          })
+          resolve({
+            errCode: 0,
+            errMessage: "Save infor doctor succeed! "
+          })
+        } else if (inputData.action === 'EDIT') {
+          console.log("update du lieu markdown : ", inputData.contentMarkdown)
+          let doctorMarkdown = await db.markdown.findOne({
+            where: { doctorId: inputData.doctorId },
+            raw: false,
+          })
+          if (doctorMarkdown) {
+            doctorMarkdown.contentHTML = inputData.contentHTML;
+            doctorMarkdown.contentMarkdown = inputData.contentMarkdown;
+            doctorMarkdown.description = inputData.description;
+            await doctorMarkdown.save();
+          }
+          resolve({
+            errCode: 0,
+            errMessage: "update infor doctor succeed! "
+          })
+        }
       }
-      resolve({
-        errCode: 0,
-        errMessage: "Save infor doctor succeed! "
-      })
+
     } catch (e) {
       reject(e);
     }

@@ -19,7 +19,7 @@ let getTopDoctorHome = async (req, res) => {
 let getAllDoctors = async (req, res) => {
   try {
     let doctors = await doctorService.getAllDoctors();
-    console.log('get all docs : ', doctors);
+    // console.log('get all docs : ', doctors);
     return res.status(200).json(doctors);
   } catch (e) {
     console.log(e);
@@ -30,6 +30,7 @@ let getAllDoctors = async (req, res) => {
 let createInforDoctor = async (req, res) => {
   try {
     let response = await doctorService.createInforDoctor(req.body);
+    console.log(response);
     return res.status(200).json(response);
   } catch (e) {
     console.log(e);
@@ -39,7 +40,7 @@ let createInforDoctor = async (req, res) => {
 
 let getDetailDoctorById = async (req, res) => {
   try {
-    console.log('get : ', req.query.id);
+    console.log('getDetailDoctorById : ', req.query.id);
     let infor = await doctorService.getDetailDoctorById(req.query.id);
     return res.status(200).json(infor);
   } catch (e) {
