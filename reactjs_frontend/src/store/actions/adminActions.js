@@ -2,7 +2,8 @@ import actionTypes from './actionTypes';
 import {
   getAllCodeService, createNewUserService,
   getAllUsers, deleteUserService,
-  updateUserService, getTopDoctorHomeService
+  updateUserService, getTopDoctorHomeService, getAllDoctors,
+  createInforDoctor,
 } from '../../services/userService';
 import { toast } from "react-toastify";
 
@@ -241,3 +242,51 @@ export const fetchTopDoctorSuccess = () => ({
 export const fetchTopDoctorFailed = () => ({
   type: actionTypes.FETCH_TOP_DOCTOR_FAIlDED
 })
+
+
+export const fetchALLDoctors = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllDoctors();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+          dataDr: res.data,
+        })
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_FAIlDED,
+        })
+      }
+    } catch (e) {
+      toast.error("get all doctor faild!", e);
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTORS_FAIlDED,
+      })
+    }
+  }
+}
+
+export const CreateInforDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createInforDoctor(data);
+      if (res && res.errCode === 0) {
+        toast.success("create infor doctor succeed!");
+        dispatch({
+          type: actionTypes.CREATE_INFOR_DOCTOR_SUCCESS
+        })
+      } else {
+        toast.error("create infor doctor failded!");
+        dispatch({
+          type: actionTypes.CREATE_INFOR_DOCTOR_FAIlDED,
+        })
+      }
+    } catch (e) {
+      toast.error("create infor doctor failded!", e);
+      dispatch({
+        type: actionTypes.CREATE_INFOR_DOCTOR_FAIlDED,
+      })
+    }
+  }
+}
