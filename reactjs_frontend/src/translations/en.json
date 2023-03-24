@@ -70,5 +70,11 @@
     "homepage": {
         "out-standing-doctor": "OutStanding Doctor",
         "more-infor": "More Infor"
+    },
+    "manage-schedule": {
+        "title": "Management of Medical Examination Plan",
+        "choose-doctor": "Choose Doctor",
+        "choose-date": "Choose Date",
+        "save-information": "Save Information"
     }
 }
