@@ -134,7 +134,6 @@ let getDetailDoctorById = (id) => {
 let bulkCreateSchedule = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log('Creating schedule : ', data)
       if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
         resolve({
           errCode: 1,
@@ -160,7 +159,6 @@ let bulkCreateSchedule = (data) => {
         if (existing && existing.length > 0) {
           existing = existing.map(item => {
             item.date = new Date(item.date).getTime();
-            console.log("ex : ", item)
             return item;
           })
         }
@@ -185,10 +183,38 @@ let bulkCreateSchedule = (data) => {
   })
 };
 
+let getSheduleByDate = (doctorId, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !date) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameters"
+        })
+      } else {
+        let dataSchedule = await db.schedule.findAll({
+          where: {
+            doctorId: doctorId,
+            date: date
+          }
+        })
+        if (!dataSchedule) dataSchedule = [];
+        resolve({
+          errCode: 0,
+          errMessage: dataSchedule
+        })
+      }
+    } catch (error) {
+      reject(error);
+    }
+  })
+}
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
   createInforDoctor: createInforDoctor,
   getDetailDoctorById: getDetailDoctorById,
   bulkCreateSchedule: bulkCreateSchedule,
+  getSheduleByDate: getSheduleByDate
 }
