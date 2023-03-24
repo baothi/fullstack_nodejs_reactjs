@@ -40,7 +40,6 @@ let createInforDoctor = async (req, res) => {
 
 let getDetailDoctorById = async (req, res) => {
   try {
-    console.log('getDetailDoctorById : ', req.query.id);
     let infor = await doctorService.getDetailDoctorById(req.query.id);
     return res.status(200).json(infor);
   } catch (e) {
@@ -61,6 +60,7 @@ let bulkCreateSchedule = async (req, res) => {
 let getSheduleByDate = async (req, res) => {
   try {
     let infor = await doctorService.getSheduleByDate(req.query.doctorId, req.query.date);
+    console.log(infor);
     return res.status(200).json(infor)
   } catch (e) {
     console.log(e);

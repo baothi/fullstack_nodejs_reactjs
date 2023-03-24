@@ -128,6 +128,7 @@ class ManageSchedule extends Component {
       formatedDate: formatedDate
     })
     // console.log("check result : ", result);
+    toast.success("create a new user succedd!");
   }
 
   render() {
