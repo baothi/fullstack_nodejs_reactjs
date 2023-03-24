@@ -1,4 +1,8 @@
 import db from "../models/index";
+require('dotenv').config();
+import _ from "lodash";
+
+const MAX_NUMBER_SCHEDULES = process.env.MAX_NUMBER_SCHEDULES;
 
 let getTopDoctorHome = (limit) => {
   return new Promise(async (resolve, reject) => {
@@ -127,9 +131,64 @@ let getDetailDoctorById = (id) => {
   })
 };
 
+let bulkCreateSchedule = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log('Creating schedule : ', data)
+      if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
+        resolve({
+          errCode: 1,
+          errMessage: 'Missing required parameters !'
+        })
+      } else {
+        let schedule = data.arrSchedule;
+        if (schedule && schedule.length > 0) {
+          schedule = schedule.map(item => {
+            item.maxNumber = MAX_NUMBER_SCHEDULES;
+            return item
+          })
+        }
+        // get all existing database schedules
+        let existing = await db.schedule.findAll(
+          {
+            where: { doctorId: data.doctorId, date: data.formatedDate },
+            attributes: ["timeType", "date", "doctorId", "maxNumber"],
+            raw: true
+          },
+        );
+        // convert date
+        if (existing && existing.length > 0) {
+          existing = existing.map(item => {
+            item.date = new Date(item.date).getTime();
+            console.log("ex : ", item)
+            return item;
+          })
+        }
+        //compare different schedules
+        let toCreate = _.differenceWith(schedule, existing, (a, b) => {
+          return a.timeType === b.timeType && a.date === b.date;
+        });
+
+        // create data
+        if (toCreate && toCreate.length > 0) {
+          await db.schedule.bulkCreate(toCreate)
+        }
+        resolve({
+          errCode: 0,
+          errMessage: "OK"
+        })
+      }
+
+    } catch (error) {
+      reject(error);
+    }
+  })
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
   createInforDoctor: createInforDoctor,
-  getDetailDoctorById: getDetailDoctorById
+  getDetailDoctorById: getDetailDoctorById,
+  bulkCreateSchedule: bulkCreateSchedule,
 }
