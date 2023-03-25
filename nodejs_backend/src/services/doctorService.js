@@ -133,6 +133,7 @@ let getDetailDoctorById = (id) => {
 
 let bulkCreateSchedule = (data) => {
   return new Promise(async (resolve, reject) => {
+    console.log("bulkCreateSchedule : ", data)
     try {
       if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
         resolve({
@@ -147,14 +148,15 @@ let bulkCreateSchedule = (data) => {
             return item
           })
         }
+        // get all existing database schedules
+        let existing = await db.schedule.findAll(
+          {
+            where: { doctorId: data.doctorId, date: data.formatedDate },
+            attributes: ["timeType", "date", "doctorId", "maxNumber"],
+            raw: true
+          },
+        );
 
-        // convert date
-        if (existing && existing.length > 0) {
-          existing = existing.map(item => {
-            item.date = new Date(item.date).getTime();
-            return item;
-          })
-        }
         //compare different schedules
         let toCreate = _.differenceWith(schedule, existing, (a, b) => {
           return a.timeType === b.timeType && +a.date === +b.date;
