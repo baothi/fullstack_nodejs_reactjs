@@ -44,7 +44,11 @@ class BookingModal extends Component {
           </div>
           <div className='booking-modal-body'>
             <div className='doctor-info'>
-              <ProfileDoctor doctorId={doctorId} />
+              <ProfileDoctor
+                doctorId={doctorId}
+                isShowDescriptionDoctor={false}
+                dataTime={dataTime}
+              />
             </div>
             {/* <div className='price-info'>Giá Khám 500.000VND</div> */}
             <div className='row'>
