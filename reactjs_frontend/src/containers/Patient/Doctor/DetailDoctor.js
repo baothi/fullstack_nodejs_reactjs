@@ -5,6 +5,7 @@ import './DetailDoctor.scss';
 import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor';
 
 
 class DetailDoctor extends Component {
@@ -42,7 +43,6 @@ class DetailDoctor extends Component {
     let { language } = this.props;
     let nameVi = '';
     let nameEn = '';
-    console.log("check id : ", detailDoctor)
     if (detailDoctor && detailDoctor.positionData) {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
@@ -75,7 +75,9 @@ class DetailDoctor extends Component {
             <div className='content-left'>
               <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
             </div>
-            <div className='content-right'></div>
+            <div className='content-right'>
+              <DoctorExtraInfor doctorIdFromParent={this.state.currentDoctorId} />
+            </div>
           </div>
           <div className='detail-infor-doctor'>
             {detailDoctor && detailDoctor.markdown && detailDoctor.markdown.contentHTML &&

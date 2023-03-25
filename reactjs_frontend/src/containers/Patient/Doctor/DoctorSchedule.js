@@ -82,15 +82,12 @@ class DoctorSchedule extends Component {
           allAvalableTime: res.data ? res.data : []
         })
       }
-      console.log("check res schedule from react : ", res)
     }
   }
 
   render() {
     let { allDays, allAvalableTime } = this.state;
     let { language } = this.props;
-    console.log("render allAvalableTime ", allAvalableTime)
-    console.log("render allDays ", allDays)
     return (
       <div className='doctor-schedule-container'>
         <div className='all-schedule'>

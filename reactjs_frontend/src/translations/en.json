@@ -83,6 +83,28 @@
             "no-schedule": "Doctor No appointment at this time, please choose another time",
             "choose": "Choose ",
             "book-free": " and book (free)"
+        },
+        "extra-info-doctor": {
+            "text-address": "Address Of Examination",
+            "price": "Price",
+            "detail": "See detail",
+            "payment": " The patient can pay the cost in the form of: ",
+            "hide-price": "hide price"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Create more information doctors",
+            "select-doctor": "Select doctor",
+            "intro": "Introduction",
+            "add": "Create Infor",
+            "save": "Save Intro",
+            "price": "Price",
+            "payment": "Payment",
+            "province": "province",
+            "nameClinic": "Clinic's name",
+            "addressClinic": "Clinic's address",
+            "note": "note"
         }
     }
 }

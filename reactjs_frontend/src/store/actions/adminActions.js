@@ -96,7 +96,6 @@ export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createNewUserService(data)
-      // console.log("check reactjs use redux for : ", res);
       if (res && res.errCode === 0) {
         toast.success("create a new user succedd!");
         dispatch(saveUserSuccess());
@@ -157,7 +156,6 @@ export const deleteAUser = (userId) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteUserService(userId)
-      // console.log("check reactjs use redux for : ", res);
       if (res && res.errCode === 0) {
         toast.success("delete user succeed!");
         dispatch(deleteUserSuccess());
@@ -186,7 +184,6 @@ export const editAUser = (user) => {
   return async (dispatch, getState) => {
     try {
       let res = await updateUserService(user)
-      // console.log("check reactjs use redux for : ", res);
       if (res && res.errCode === 0) {
         toast.success("update user succeed!");
         dispatch(editUserSuccess());
@@ -215,7 +212,6 @@ export const fetchTopDoctor = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getTopDoctorHomeService('');
-      // console.log("fetchTopDoctor : ", res)
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
@@ -249,7 +245,6 @@ export const fetchALLDoctors = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllDoctors();
-      console.log("fetchALLDoctors in admin action", res);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
@@ -315,3 +310,39 @@ export const fetchALLScheduleTime = () => {
     }
   }
 }
+
+export const getAllRequiredDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START })
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+
+      if (resPrice && resPrice.errCode === 0
+        && resPayment && resPayment.errCode === 0
+        && resProvince && resProvince.errCode === 0) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data
+        }
+        dispatch(fetchRequiredDoctorInforSuccess(data))
+      } else {
+        dispatch(fetchRequiredDoctorInforFailed())
+      }
+    } catch (e) {
+      toast.error("fetchRequiredDoctorInforFailed!", e);
+      dispatch(fetchRequiredDoctorInforFailed())
+    }
+  }
+}
+
+export const fetchRequiredDoctorInforSuccess = (allRequireData) => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+  data: allRequireData
+})
+
+export const fetchRequiredDoctorInforFailed = () => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIlDED
+})
