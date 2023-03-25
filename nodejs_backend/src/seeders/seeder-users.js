@@ -12,19 +12,34 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert('Users', [{
-      email: 'baothi@gmail.com',
-      password: '$2a$10$Q7LNyTfSDGCBFl3DgjiVpes80a5hRdRGVCBf8zCc2GLIliM8mXT4u', // 123456789
-      firstName: 'bao',
-      lastName: 'thi',
-      address: 'bienhoa dong nai',
-      phonenumber: '0906583131',
-      gender: 'M',
-      roleId: 'R1',
-      positionId: 'P1',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }]);
+    return queryInterface.bulkInsert('Users', [
+      {
+        email: 'baothi@gmail.com',
+        password: '$2a$10$Q7LNyTfSDGCBFl3DgjiVpes80a5hRdRGVCBf8zCc2GLIliM8mXT4u', // 123456789
+        firstName: 'bao',
+        lastName: 'thi',
+        address: 'bienhoa dong nai',
+        phonenumber: '0906583131',
+        gender: 'M',
+        roleId: 'R1',
+        positionId: 'P1',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: 'doctor1@gmail.com',
+        password: '$2a$10$Bue0yUq59BRzBbJQIbr7rOVpgxVVnfnAQSFLNzldZV4NX3pcYci7S', // 123456789
+        firstName: 'bao',
+        lastName: 'thi',
+        address: 'bienhoa dong nai',
+        phonenumber: '0906583131',
+        gender: 'M',
+        roleId: 'R1',
+        positionId: 'P1',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ]);
   },
 
   async down(queryInterface, Sequelize) {

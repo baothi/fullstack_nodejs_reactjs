@@ -76,6 +76,7 @@ app.listen(port, () => {
 // npx sequelize-cli model:generate --name doctor_clinic_specialty --attributes doctorId:integer,clinicId:integer,specialtyId:integer
 
 // npx sequelize-cli model:generate --name clinic --attributes address:integer,description:text,image:string
+// npx sequelize-cli model:generate --name doctor_info --attributes doctorId:integer,priceId:string,provinceId:string,paymentId:string,addressClinic:string,nameClinic:string,node:string,count:integer
 
 // https://www.youtube.com/watch?v=_YEKpvabzCQ&list=PLncHg6Kn2JT6E38Z3kit9Hnif1xC_9VqI&index=40
 
