@@ -3,7 +3,6 @@ import partientService from "../services/patientService";
 
 let postBookAppointment = async (req, res) => {
   try {
-    console.log(req.body);
     let infor = await partientService.postBookAppointment(req.body);
     return res.status(200).json(infor)
   } catch (e) {
