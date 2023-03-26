@@ -69,7 +69,8 @@
     },
     "homepage": {
         "out-standing-doctor": "OutStanding Doctor",
-        "more-infor": "More Infor"
+        "more-infor": "More Infor",
+        "specialty-poplular": "Popular specialties"
     },
     "manage-schedule": {
         "title": "Management of Medical Examination Plan",
@@ -118,7 +119,9 @@
             "province": "province",
             "nameClinic": "Clinic's name",
             "addressClinic": "Clinic's address",
-            "note": "note"
+            "note": "note",
+            "specialty": "Specialties",
+            "select-clinic": "Select Clinic"
         }
     }
 }

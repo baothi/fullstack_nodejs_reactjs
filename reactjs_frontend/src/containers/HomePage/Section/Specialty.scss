@@ -12,3 +12,14 @@
 
 /*Smart phone nhỏ*/
 @media screen and (max-width: 240px) {}
+
+.specialty-child{
+  cursor: pointer;
+
+  .specialty-name{
+    padding: 10px 0;
+    &:hover{
+      color: #45c3d2;
+    }
+  }
+}

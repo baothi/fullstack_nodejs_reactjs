@@ -69,7 +69,8 @@
     },
     "homepage": {
         "out-standing-doctor": "Bác sĩ nổi bật tuần qua",
-        "more-infor": "Xem Thêm"
+        "more-infor": "Xem Thêm",
+        "specialty-poplular": "Chuyên Khoa Phổ biến"
     },
     "manage-schedule": {
         "title": "Quản Lý Kế hoạch Khám Bệnh",
@@ -118,7 +119,9 @@
             "province": "Tỉnh thành",
             "nameClinic": "Tên phòng khám",
             "addressClinic": "Địa chỉ phòng khám",
-            "note": "Ghi chú"
+            "note": "Ghi chú",
+            "specialty": "Chọn chuyên khoa",
+            "select-clinic": "Chọn Phòng Khám"
         }
     }
 }

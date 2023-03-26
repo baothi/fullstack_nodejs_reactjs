@@ -1,9 +1,8 @@
-import partientService from "../services/patientService";
+import specialtyService from "../services/specialtyService";
 
-
-let postBookAppointment = async (req, res) => {
+let createSpecialty = async (req, res) => {
   try {
-    let infor = await partientService.postBookAppointment(req.body);
+    let infor = await specialtyService.createSpecialty(req.body);
     return res.status(200).json(infor)
   } catch (e) {
     console.log(e);
@@ -14,9 +13,9 @@ let postBookAppointment = async (req, res) => {
   }
 }
 
-let postVerifyBookAppointment = async (req, res) => {
+let getAllSpecialty = async (req, res) => {
   try {
-    let infor = await partientService.postVerifyBookAppointment(req.body);
+    let infor = await specialtyService.getAllSpecialty();
     return res.status(200).json(infor)
   } catch (e) {
     console.log(e);
@@ -28,6 +27,6 @@ let postVerifyBookAppointment = async (req, res) => {
 }
 
 module.exports = {
-  postBookAppointment: postBookAppointment,
-  postVerifyBookAppointment: postVerifyBookAppointment
+  createSpecialty: createSpecialty,
+  getAllSpecialty: getAllSpecialty
 }
