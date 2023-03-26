@@ -11,23 +11,24 @@ let postBookAppointment = (data) => {
         })
       } else {
         let user = await db.User.findOrCreate({
-          where: { email: data.email },
-          default: {
-            email: data.email,
-            roleId: 'R3'
-          },
+          where: { email: data.email, roleId: 'R3' },
+          // default: {
+          //   email: data.email,
+          //   roleId: 'R3'
+          // },
         });
+        console.log(user[0]);
 
         if (user && user[0]) {
           await db.booking.findOrCreate({
-            where: { patientId: user[0].id },
-            default: {
-              statusId: 'S1',
-              doctorId: data.doctorId,
-              patientId: user[0].id,
-              date: data.date,
-              timeType: data.timeType
-            }
+            where: { patientId: user[0].id, statusId: "S1", doctorId: data.doctorId, date: data.date, timeType: data.timeType },
+            // default: {
+            //   statusId: "S1",
+            //   doctorId: data.doctorId,
+            //   patientId: user[0].id,
+            //   date: data.date,
+            //   timeType: data.timeType
+            // }
           })
         }
         resolve({
