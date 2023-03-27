@@ -53,7 +53,7 @@ let getAllDoctors = () => {
 let checkRequiredFields = (inputData) => {
   let arrFields = ["doctorId", "contentHTML", "contentMarkdown", "action",
     "selectedPrice", "selectedPayment", "selectedProvince",
-    "addressClinic", "note", "specialtyId"
+    "addressClinic", "specialtyId", "clinicId"
   ]
 
   let isValid = true;
@@ -119,9 +119,9 @@ let createInforDoctor = (inputData) => {
           doctorInfor.paymentId = inputData.selectedPayment;
           doctorInfor.nameClinic = inputData.nameClinic;
           doctorInfor.addressClinic = inputData.addressClinic;
-          doctorInfor.note = inputData.note;
+          doctorInfor.node = inputData.note;
           doctorInfor.specialtyId = inputData.specialtyId;
-          doctorInfor.cinicId = inputData.cinicId;
+          doctorInfor.clinicId = inputData.clinicId;
           await doctorInfor.save();
         } else {
           //create
@@ -134,7 +134,7 @@ let createInforDoctor = (inputData) => {
             addressClinic: inputData.addressClinic,
             note: inputData.note,
             specialtyId: inputData.specialtyId,
-            cinicId: inputData.cinicId
+            clinicId: inputData.clinicId
           })
 
         }
