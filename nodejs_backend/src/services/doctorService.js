@@ -81,6 +81,7 @@ let createInforDoctor = (inputData) => {
           errMessage: `Missing parameter : ${checkobj.element}`
         })
       } else {
+
         //upsert to markdown
         if (inputData.action === 'CREATE') {
           await db.markdown.create({
@@ -95,6 +96,7 @@ let createInforDoctor = (inputData) => {
             where: { doctorId: inputData.doctorId },
             raw: false,
           })
+
           if (doctorMarkdown) {
             doctorMarkdown.contentHTML = inputData.contentHTML;
             doctorMarkdown.contentMarkdown = inputData.contentMarkdown;
