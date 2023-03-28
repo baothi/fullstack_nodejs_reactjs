@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 class HomePage extends Component {
   handleAfterChange = (event, slick, currentSlide) => {
-    console.log(" check current slide : ", slick, currentSlide);
+    // console.log(" check current slide : ", slick, currentSlide);
   };
 
   render() {

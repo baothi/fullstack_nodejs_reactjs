@@ -1,6 +1,7 @@
 import db from "../models/index";
 require('dotenv').config();
 import _ from "lodash";
+import emailService from "../services/emailService";
 
 const MAX_NUMBER_SCHEDULES = process.env.MAX_NUMBER_SCHEDULES;
 
@@ -358,6 +359,87 @@ let getprofileDoctorById = (doctorId) => {
   })
 }
 
+let getListPatientForDoctor = (doctorId, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !date) {
+        resolve({
+          errCode: 0,
+          errMessage: "Missing required parameters"
+        })
+      } else {
+        console.log(doctorId, date)
+        let data = await db.booking.findAll({
+          where: {
+            statusId: 'S2',
+            doctorId: doctorId,
+            date: date
+          },
+          include: [
+            {
+              model: db.User, as: "patientData",
+              attributes: ["email", "firstName", "address", "gender"],
+              include: [
+                {
+                  model: db.allcode, as: "genderData", attributes: ["valueEn", "valueVi"]
+                }
+              ],
+            },
+            {
+              model: db.allcode, as: "timeTypeDataPatient", attributes: ["valueEn", "valueVi"]
+            }
+          ],
+          raw: false,
+          nest: true
+        })
+        resolve({
+          errCode: 0,
+          data: data
+        })
+      }
+
+    } catch (e) {
+      reject(e);
+    }
+  })
+};
+
+let sendRemedy = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!data.email || !data.doctorId || !data.patientId || !data.timeType || !data.imgBase64) {
+        resolve({
+          errCode: 0,
+          errMessage: "Missing required parameters"
+        })
+      } else {
+        //update patient status
+        let appointment = await db.booking.findOne({
+          where: {
+            doctorId: data.doctorId,
+            patientId: data.patientId,
+            timeType: data.timeType,
+            statusId: 'S2'
+          },
+          raw: false
+        })
+        // send email remedy
+        await emailService.sendAttachment(data);
+        if (appointment) {
+          appointment.statusId = 'S3';
+          await appointment.save()
+        }
+        resolve({
+          errCode: 0,
+          errMessage: "ok"
+        })
+      }
+    } catch (error) {
+      reject(error);
+    }
+  })
+};
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
@@ -366,5 +448,7 @@ module.exports = {
   bulkCreateSchedule: bulkCreateSchedule,
   getSheduleByDate: getSheduleByDate,
   getExtraInforDoctorById: getExtraInforDoctorById,
-  getprofileDoctorById: getprofileDoctorById
+  getprofileDoctorById: getprofileDoctorById,
+  getListPatientForDoctor: getListPatientForDoctor,
+  sendRemedy: sendRemedy
 }

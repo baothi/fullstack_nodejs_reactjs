@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/*Markdown it options*/)
 
-class DefaultClass extends Component {
+class ManageSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,4 +115,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DefaultClass);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);

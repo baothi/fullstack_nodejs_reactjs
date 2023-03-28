@@ -112,7 +112,7 @@ class DoctorSchedule extends Component {
   render() {
     let { allDays, allAvalableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
     let { language } = this.props;
-    console.log("allAvalableTime : ", allAvalableTime)
+    // console.log("allAvalableTime : ", allAvalableTime)
     return (
       <>
         <div className='doctor-schedule-container'>

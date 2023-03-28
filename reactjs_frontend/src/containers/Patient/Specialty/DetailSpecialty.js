@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
 import "./DetailSpecialty.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
-import DoctorSchele from "../Doctor/DoctorSchedule";
+import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from '../Doctor/ProfileDoctor';
 import { getAllDetailSpecialtyById, getAllCodeService } from "../../../services/userService";
@@ -136,9 +136,12 @@ class DetailSpecialty extends Component {
                   </div>
                   <div className='dt-content-right'>
                     <div className='doctor-scheduled'>
-                      <DoctorSchele
+                      <DoctorSchedule
                         doctorIdFromParent={item}
                       />
+                    </div>
+                    <div className='doctor-extra-infor'>
+                      <DoctorExtraInfor doctorIdFromParent={item} />
                     </div>
                   </div>
                 </div>
