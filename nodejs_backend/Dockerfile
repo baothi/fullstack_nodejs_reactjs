@@ -1,40 +1,15 @@
-FROM python:3.9.7
+FROM node:14-alpine
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+WORKDIR /app/backend
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+COPY package*.json ./
 
-RUN mkdir /code
-WORKDIR /code
-RUN python3.9 -m pip install --no-cache-dir --upgrade \
-    pip \
-    setuptools \
-    wheel
+RUN npm install
 
-RUN addgroup --system dokku \
-    && adduser --system --ingroup dokku dokku
+RUN npm install -g @babel/core @babel/cli
 
-COPY requirements.txt /code/
+COPY . .
 
-RUN pip install --no-cache-dir  -r requirements.txt && rm -rf /var/lib/apt/lists/*
-COPY . /code/
+RUN npm run build-src
 
-# Collect static files
-# RUN python manage.py collectstatic --noinput --clear
-# RUN chmod -R 777 /code/static/
-# RUN chmod -R 777 /code/staticfiles/
-RUN chown -R dokku:dokku /code/
-RUN chown -R dokku:dokku /code/media/
-USER dokku
-
-# COPY ./entrypoint.sh /
-# ENTRYPOINT ["sh", "/entrypoint.sh"]
-
-EXPOSE 5000
-# Run application
-# CMD gunicorn phongthuy_thanhnhan.wsgi:application --bind 0.0.0.0:8000
-CMD [ "gunicorn", "code:code" ]
+CMD ["npm", "run", "build"]

@@ -13,3 +13,22 @@ services:
     ports:
       - "3306:3306"
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs_backend_express
+    container_name: nodejs_backend_express
+    environment:
+      - DATABASE_URL=mysql://db-mysql/nodejs_backend
+      - SITE_URL=http://localhost:8080
+      - DB_HOST=host.docker.internal
+    # volumes:
+    #   - .:/app
+    # working_dir: /app
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - db-mysql
