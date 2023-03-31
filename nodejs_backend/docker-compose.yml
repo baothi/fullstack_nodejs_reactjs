@@ -1,18 +1,33 @@
 version: '3.9'
 services:
-  db-mysql:
-    image: mysql:5.7.41
-    container_name: fullstack
-    restart: always
-    environment:
-      MYSQL_DATABASE: nodejs_backend
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USERNAME: root
-      MYSQL_USER_PORT: 3306
-      MYSQL_USER_HOST: localhost
+  # db-mysql:
+  #   image: mysql:5.7.41
+  #   container_name: fullstack
+  #   restart: always
+  #   environment:
+  #     MYSQL_DATABASE: nodejs_backend
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_USERNAME: root
+  #     MYSQL_USER_PORT: 3306
+  #     MYSQL_USER_HOST: localhost
+  #   ports:
+  #     - "3306:3306"
+  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+  db:
+    container_name: postgres
+    image: postgres:14.6
     ports:
-      - "3306:3306"
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: nodejs_backend
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_PORT: 5432
+      DATABASE_HOST: 127.0.0.1
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'
+    restart: always
 
   backend:
     build:
@@ -21,7 +36,7 @@ services:
     image: nodejs_backend_express
     container_name: nodejs_backend_express
     environment:
-      - DATABASE_URL=mysql://db-mysql/nodejs_backend
+      - DATABASE_URL=postgres://db/nodejs_backend
       - SITE_URL=http://localhost:8080
       - DB_HOST=host.docker.internal
     # volumes:
@@ -31,4 +46,7 @@ services:
       - 8080:8080
     restart: unless-stopped
     depends_on:
-      - db-mysql
+      - db
+
+volumes:
+  postgres:
